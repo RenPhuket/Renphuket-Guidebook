@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Renaissance Phuket — Discover This Way / ค้นพบในแบบของคุณ</title>
+<style>
+  :root{
+    --midnight:#2A2E3D;--pavement:#F5F3F0;--cargo:#4F4A06;
+    --spark:#F2B826;--wave:#3397B6;
+    --midnight-80:rgba(42,46,61,.78);--line:rgba(42,46,61,.14);--maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Georgia,"Miller Text RH",serif;color:var(--midnight);background:var(--pavement);line-height:1.6;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
+  .display{font-family:Arial,"Maple RH","Swiss 721",sans-serif;text-transform:uppercase;letter-spacing:.07em;font-weight:700;line-height:1.06}
+  .eyebrow{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.3em;font-size:.72rem;font-weight:700;color:var(--wave)}
+  .th{display:block;font-family:"Sukhumvit Set","Leelawadee UI","Tahoma",Georgia,serif;font-size:.92em;color:var(--cargo);margin-top:5px;line-height:1.55;letter-spacing:0;text-transform:none}
+  .dark .th,.onwave .th{color:rgba(245,243,240,.72)}
+
+  /* NAV */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 32px;background:rgba(245,243,240,0);transition:.4s ease}
+  header.nav.scrolled{background:rgba(245,243,240,.97);padding:10px 32px;box-shadow:0 1px 0 var(--line)}
+  .brandmark{font-family:Arial,sans-serif;font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:.8rem;color:var(--midnight);opacity:0;transition:opacity .4s ease}
+  header.nav.scrolled .brandmark{opacity:1}
+  .nav-links{display:flex;gap:22px}
+  .nav-links a{font-family:Arial,sans-serif;font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--midnight-80);transition:color .25s}
+  .nav-links a:hover{color:var(--wave)}
+  @media(max-width:820px){.nav-links{display:none}}
+
+  /* HERO */
+  .hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;color:var(--pavement);padding:120px 24px 90px}
+  .hero .bg{position:absolute;inset:0;background:url('images/p01_001.jpg') center/cover;transform:scale(1.08);animation:slowzoom 18s ease-in-out infinite alternate}
+  @keyframes slowzoom{to{transform:scale(1.16)}}
+  .hero .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(31,34,46,.55) 0%,rgba(42,46,61,.55) 40%,rgba(31,34,46,.82) 100%)}
+  .hero-inner{position:relative;z-index:2;max-width:900px}
+  .hero .eyebrow{color:var(--spark);margin-bottom:24px}
+  .hero h1{font-size:clamp(2.6rem,7vw,5.4rem);margin-bottom:6px}
+  .hero h1 .accent{color:var(--spark)}
+  .hero .sub{font-style:italic;font-size:clamp(1.05rem,2.4vw,1.5rem);color:rgba(245,243,240,.9);margin-top:22px;max-width:660px;margin-inline:auto}
+  .hero .sub .th{font-style:normal;color:rgba(245,243,240,.75)}
+  .scroll-cue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:2;font-family:Arial,sans-serif;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(245,243,240,.7)}
+  .scroll-cue::after{content:"";display:block;width:1px;height:32px;margin:8px auto 0;background:linear-gradient(var(--spark),transparent);animation:cue 1.8s ease-in-out infinite}
+  @keyframes cue{0%,100%{opacity:.3;height:22px}50%{opacity:1;height:36px}}
+
+  /* SECTIONS */
+  section{padding:92px 24px}
+  .wrap{max-width:var(--maxw);margin:0 auto}
+  .section-head{max-width:780px;margin-bottom:50px}
+  .section-head h2{font-size:clamp(1.8rem,4vw,3rem);margin:14px 0 16px}
+  .section-head .intro{font-size:1.06rem;color:var(--midnight-80)}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ABOUT */
+  .about{background:var(--midnight);color:var(--pavement)}
+  .about .eyebrow{color:var(--spark)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
+  @media(max-width:820px){.about-grid{grid-template-columns:1fr;gap:32px}}
+  .about .lead{font-size:clamp(1.25rem,2.6vw,1.8rem);line-height:1.42}
+  .about .lead .hl{color:var(--spark);font-style:italic}
+  .about .lead .th{font-size:.62em;color:rgba(245,243,240,.75);margin-top:14px}
+  .about .figure img{border-radius:16px;width:100%;height:520px;object-fit:cover;box-shadow:0 30px 60px -30px rgba(0,0,0,.7)}
+  @media(max-width:820px){.about .figure img{height:360px}}
+
+  /* POSITIONING */
+  .pos-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  @media(max-width:820px){.pos-grid{grid-template-columns:1fr}}
+  .pos-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:36px;box-shadow:0 20px 50px -32px rgba(42,46,61,.4)}
+  .pos-card.dark{background:var(--wave);color:#fff;border:none}
+  .pos-card.dark .eyebrow{color:#fff;opacity:.9}
+  .pos-card h3{font-size:1.4rem;margin:10px 0 14px}
+  .pos-figure{margin-top:22px;border-radius:12px;overflow:hidden;height:280px}
+  .pos-figure img{width:100%;height:100%;object-fit:cover}
+
+  /* VALUES */
+  .values{background:#fff}
+  .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:820px){.values-grid{grid-template-columns:1fr}}
+  .value-card{border:1px solid var(--line);border-radius:18px;padding:34px 30px;background:var(--pavement);transition:.35s ease;position:relative;overflow:hidden}
+  .value-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:var(--spark);transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+  .value-card:hover{transform:translateY(-8px);box-shadow:0 26px 50px -28px rgba(42,46,61,.45);background:#fff}
+  .value-card:hover::before{transform:scaleX(1)}
+  .value-card .num{font-family:Arial,sans-serif;font-weight:700;color:var(--spark);font-size:1rem;letter-spacing:.1em}
+  .value-card h3{font-size:1.35rem;margin:12px 0 12px}
+  .value-card p{color:var(--midnight-80);font-size:1rem}
+
+  /* PILLARS */
+  .pillars{background:var(--midnight);color:var(--pavement)}
+  .pillars .eyebrow{color:var(--spark)}
+  .pillars .section-head .intro{color:rgba(245,243,240,.8)}
+  .pillar{border-top:1px solid rgba(245,243,240,.18);padding:28px 0;cursor:pointer;display:grid;grid-template-columns:60px 1fr 40px;gap:22px;align-items:start}
+  .pillar:last-child{border-bottom:1px solid rgba(245,243,240,.18)}
+  .pillar .pnum{font-family:Arial,sans-serif;font-weight:700;font-size:1.9rem;color:var(--spark);line-height:1}
+  .pillar h3{font-size:clamp(1.35rem,3vw,1.9rem);transition:color .3s ease}
+  .pillar:hover h3{color:var(--spark)}
+  .pillar .ptease{color:rgba(245,243,240,.74);margin-top:8px;font-size:1.02rem}
+  .pillar .toggle{font-family:Arial,sans-serif;font-size:1.6rem;color:var(--spark);justify-self:end;transition:transform .35s ease;line-height:1}
+  .pillar.open .toggle{transform:rotate(45deg)}
+  .pdetail{grid-column:2 / 3;max-height:0;overflow:hidden;transition:max-height .6s ease,margin .6s ease,opacity .5s ease;opacity:0}
+  .pillar.open .pdetail{max-height:1800px;margin-top:22px;opacity:1}
+  .pdetail .item{display:grid;grid-template-columns:170px 1fr;gap:20px;align-items:start;padding:16px 0;border-bottom:1px dashed rgba(245,243,240,.14)}
+  .pdetail .item:last-child{border-bottom:none}
+  @media(max-width:600px){.pdetail .item{grid-template-columns:1fr}}
+  .pdetail .item img{border-radius:10px;width:100%;height:120px;object-fit:cover}
+  .pdetail .item strong{font-family:Arial,sans-serif;font-size:.84rem;letter-spacing:.05em;color:var(--spark);text-transform:uppercase}
+  .pdetail .item p{color:rgba(245,243,240,.85);margin-top:6px}
+  .pdetail .item em{display:block;color:rgba(245,243,240,.6);font-size:.92rem;margin-top:6px;font-style:italic}
+
+  /* OUTLETS */
+  .outlets{background:var(--pavement)}
+  .stat-row{display:flex;gap:46px;flex-wrap:wrap;margin-bottom:48px}
+  .stat .n{font-family:Arial,sans-serif;font-weight:700;font-size:3rem;color:var(--wave);line-height:1}
+  .stat .l{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:.7rem;color:var(--midnight-80);margin-top:6px}
+  .outlet-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:900px){.outlet-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:620px){.outlet-grid{grid-template-columns:1fr}}
+  .outlet{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.35s ease}
+  .outlet:hover{transform:translateY(-6px);box-shadow:0 24px 46px -28px rgba(42,46,61,.4)}
+  .outlet .ph{height:180px;overflow:hidden}
+  .outlet .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+  .outlet:hover .ph img{transform:scale(1.07)}
+  .outlet .body{padding:24px}
+  .outlet .tag{font-family:Arial,sans-serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--wave);font-weight:700}
+  .outlet h3{font-size:1.25rem;margin:8px 0 10px}
+  .outlet p{font-size:.95rem;color:var(--midnight-80)}
+  .outlet .sig{margin-top:12px;font-style:italic;color:var(--cargo);font-size:.92rem}
+  .outlet .hours{margin-top:10px;font-family:Arial,sans-serif;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--wave);display:flex;align-items:flex-start;gap:6px}
+  .outlet .hours::before{content:"⏱";font-style:normal;font-size:.8rem;flex-shrink:0;margin-top:2px}
+  .outlet .hours .th{font-size:.88em;letter-spacing:0;text-transform:none;color:var(--cargo);margin-top:3px}
+  .outlet-acts{margin-top:12px;display:flex;flex-direction:column;gap:5px}
+  .outlet-act{font-family:Arial,sans-serif;font-size:.64rem;color:rgba(42,46,61,.58);padding-left:16px;position:relative;line-height:1.5}
+  .outlet-act::before{content:"—";position:absolute;left:0;color:var(--spark);font-weight:700}
+  .subhead{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:.78rem;color:var(--midnight);font-weight:700;margin:0}
+  .subhead-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin:54px 0 22px}
+  .subhead-cta{font-family:Arial,sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--midnight);background:transparent;border:1.5px solid var(--midnight);border-radius:30px;padding:8px 18px;text-decoration:none;transition:background .2s,color .2s,border-color .2s;white-space:nowrap}
+  .subhead-cta:hover{background:var(--midnight);color:var(--pavement)}
+  .subhead-cta .th{font-size:.82em;letter-spacing:0;text-transform:none;display:block;color:inherit;opacity:.65;margin-top:2px}
+
+
+  /* ── WHERE WE ARE — interactive map (Brand Story) ───────── */
+  .bs-dest{background:var(--midnight);border-radius:20px;padding:40px;margin-bottom:64px;color:var(--pavement)}
+  .bs-dest .eyebrow{color:var(--spark)}
+  .bs-dest .loc-intro{font-size:1rem;color:rgba(245,243,240,.75);margin:10px 0 28px;max-width:680px}
+  /* tabs */
+  .dest-tab-nav{display:flex;gap:12px;margin-bottom:28px}
+  .dest-tab-btn{font-family:Arial,sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:none;border:1px solid rgba(245,243,240,.25);color:rgba(245,243,240,.55);padding:10px 24px;border-radius:30px;cursor:pointer;transition:all .2s}
+  .dest-tab-btn.active{background:var(--spark);border-color:var(--spark);color:var(--midnight)}
+  .dest-tab{display:none}.dest-tab.active{display:block}
+  /* Phuket map */
+  .phuket-map-layout{display:grid;grid-template-columns:minmax(300px,.95fr) 1.05fr;gap:28px;align-items:start}
+  @media(max-width:900px){.phuket-map-layout{grid-template-columns:1fr}}
+  .phuket-map-visual{position:relative;min-height:500px;border-radius:18px;background:#070806;border:1px solid rgba(245,243,240,.14);box-shadow:0 4px 32px rgba(0,0,0,.35);overflow:hidden}
+  .phuket-map-visual img{display:block;width:100%;height:100%;object-fit:contain;padding:22px}
+  .phuket-pin{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);display:flex;align-items:center;gap:8px;background:none;border:0;padding:0;cursor:pointer}
+  .phuket-pin.hero .pin-number{width:40px;height:40px;background:var(--spark);color:var(--midnight);font-size:.9rem}
+  .phuket-pin.active .pin-number,.phuket-pin:hover .pin-number{background:var(--spark);color:var(--midnight);transform:scale(1.12)}
+  .pin-number{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--cargo);color:var(--pavement);border:2px solid var(--pavement);font-family:Arial,sans-serif;font-weight:700;font-size:.78rem;box-shadow:0 3px 12px rgba(0,0,0,.4);transition:transform .18s,background .18s,color .18s}
+  .pin-name{font-family:Arial,sans-serif;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--pavement);background:rgba(42,46,61,.86);border:1px solid rgba(245,243,240,.18);border-radius:999px;padding:5px 9px;white-space:nowrap}
+  .phuket-map-card{position:absolute;left:16px;right:16px;bottom:16px;background:rgba(245,243,240,.95);color:var(--midnight);border-radius:12px;padding:16px 18px}
+  .phuket-map-card .map-card-kicker{font-family:Arial,sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cargo);margin-bottom:5px}
+  .phuket-map-card h4{font-family:Arial,sans-serif;font-size:1rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px}
+  .map-card-meta{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+  .map-card-meta span{font-family:Arial,sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--midnight);color:var(--pavement);border-radius:999px;padding:5px 9px}
+  .phuket-map-card p{font-size:.84rem;color:rgba(42,46,61,.68);line-height:1.55}
+  .phuket-rec-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .rec-card{background:rgba(245,243,240,.07);border:1px solid rgba(245,243,240,.12);border-radius:12px;padding:16px;text-align:left;cursor:pointer;font:inherit;transition:border-color .18s,background .18s,transform .18s;color:inherit}
+  .rec-card.active,.rec-card:hover{border-color:rgba(242,184,38,.55);background:rgba(245,243,240,.12);transform:translateY(-2px)}
+  .rec-card strong{display:block;font-family:Arial,sans-serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--spark);margin-bottom:5px}
+  .rec-card h3{font-family:Arial,sans-serif;font-size:.92rem;letter-spacing:.03em;text-transform:uppercase;color:var(--pavement);margin-bottom:6px}
+  .rec-card p{font-size:.82rem;color:rgba(245,243,240,.7);line-height:1.5}
+  .rec-meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+  .rec-meta span{font-family:Arial,sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--midnight);background:var(--spark);border-radius:999px;padding:5px 9px}
+  .map-legend{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:18px}
+  .legend-item{display:flex;align-items:center;gap:7px;font-family:Arial,sans-serif;font-size:.72rem;letter-spacing:.06em;color:rgba(245,243,240,.65)}
+  .legend-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+  .map-shuttle{margin-top:18px;padding:18px 22px;border:1px solid rgba(245,243,240,.15);border-radius:12px;background:rgba(245,243,240,.04);display:flex;gap:36px;flex-wrap:wrap}
+  .shuttle-item{flex:1;min-width:180px}
+  .shuttle-label{font-family:Arial,sans-serif;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--wave);margin-bottom:6px;font-weight:700}
+  .shuttle-item p{font-size:.86rem;color:rgba(245,243,240,.75);line-height:1.7}
+  /* Resort map */
+  .resort-intro{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+  @media(max-width:700px){.resort-intro{grid-template-columns:repeat(2,1fr)}}
+  .r-stat{text-align:center;padding:14px;background:rgba(245,243,240,.06);border-radius:10px;border:1px solid rgba(245,243,240,.1)}
+  .r-stat .n{font-family:Arial,sans-serif;font-size:1.6rem;font-weight:700;color:var(--spark)}
+  .r-stat .l{font-family:Arial,sans-serif;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,243,240,.55);margin-top:2px}
+  .aerial-map-container{background:rgba(245,243,240,.05);border:1px solid rgba(245,243,240,.12);border-radius:18px;overflow:hidden}
+  .aerial-map-stage{position:relative;background:#111;overflow:hidden}
+  .aerial-map-stage img{display:block;width:100%;height:auto}
+  .map-num-pin{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--cargo);border:2px solid rgba(245,243,240,.95);color:var(--pavement);font-family:Arial,sans-serif;font-size:.78rem;font-weight:700;box-shadow:0 3px 12px rgba(0,0,0,.45);transition:transform .18s,background .18s;cursor:pointer}
+  .map-num-pin:hover,.map-num-pin.active{transform:translate(-50%,-50%) scale(1.18);background:var(--spark);color:var(--midnight);z-index:5}
+  .beach-label{position:absolute;left:3%;top:46%;font-family:Arial,sans-serif;font-size:1rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--pavement);text-shadow:0 2px 10px rgba(0,0,0,.55)}
+  .resort-number-menu{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;padding:24px;background:var(--pavement)}
+  @media(max-width:800px){.resort-number-menu{grid-template-columns:repeat(2,1fr)}}
+  .num-menu-col h4{font-family:Arial,sans-serif;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cargo);border-bottom:2px solid var(--wave);display:inline-block;margin-bottom:12px}
+  .num-menu-list{display:grid;gap:7px}
+  .num-menu-item{display:grid;grid-template-columns:30px 1fr;align-items:start;gap:8px;background:none;border:0;text-align:left;padding:0;cursor:pointer;color:var(--midnight)}
+  .num-badge{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--cargo);color:var(--pavement);font-family:Arial,sans-serif;font-size:.74rem;font-weight:700}
+  .num-label{font-size:.88rem;line-height:1.35;color:rgba(42,46,61,.85)}
+
+  /* ── ACCOMMODATIONS (Brand Story) ─────────────────────────── */
+  .bs-rooms{margin-bottom:60px}
+  .bs-rooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:900px){.bs-rooms-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.bs-rooms-grid{grid-template-columns:1fr}}
+  .bs-room{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.35s ease}
+  .bs-room:hover{transform:translateY(-6px);box-shadow:0 24px 44px -28px rgba(42,46,61,.42)}
+  .bs-room .ph{height:190px;overflow:hidden}
+  .bs-room .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .bs-room:hover .ph img{transform:scale(1.06)}
+  .bs-room .body{padding:20px}
+  .bs-room .size{font-family:Arial,sans-serif;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--wave);font-weight:700;margin-bottom:6px}
+  .bs-room h4{font-family:Arial,sans-serif;font-size:.98rem;font-weight:700;color:var(--midnight);margin-bottom:8px}
+  .bs-room p{font-size:.9rem;color:var(--midnight-80);line-height:1.5}
+
+  /* DID YOU KNOW */
+  .dyk{background:var(--wave);color:#fff}
+  .dyk .eyebrow{color:#fff;opacity:.9}
+  .dyk .section-head h2{color:#fff}
+  .dyk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  @media(max-width:980px){.dyk-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.dyk-grid{grid-template-columns:1fr}}
+  .dyk-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:14px;overflow:hidden}
+  .dyk-card .ph{height:150px;overflow:hidden}
+  .dyk-card .ph img{width:100%;height:100%;object-fit:cover}
+  .dyk-card .body{padding:18px}
+  .dyk-card .n{font-family:Arial,sans-serif;font-weight:700;color:var(--spark);font-size:1.3rem}
+  .dyk-card p{font-size:.9rem;line-height:1.5;margin-top:6px}
+  .dyk-card .th{color:rgba(255,255,255,.78)}
+
+  /* SOCIAL */
+  .social{background:var(--midnight);color:var(--pavement)}
+  .social .eyebrow{color:var(--spark)}
+  .social-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  @media(max-width:1020px){.social-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:640px){.social-grid{grid-template-columns:repeat(2,1fr)}}
+  .soc{background:rgba(245,243,240,.06);border:1px solid rgba(245,243,240,.16);border-radius:14px;padding:24px;text-align:center}
+  .soc h4{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:.9rem;margin-bottom:14px}
+  .soc .links{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  .soc .links a{font-family:Arial,sans-serif;font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(245,243,240,.3);border-radius:30px;padding:6px 12px;color:rgba(245,243,240,.85);text-decoration:none;transition:background .2s,border-color .2s}
+  .soc .links a:hover{background:rgba(245,243,240,.12);border-color:rgba(245,243,240,.6)}
+  /* For more information block */
+  .fmi{margin-top:56px}
+  .fmi-inner{border:1px solid rgba(245,243,240,.18);border-radius:18px;padding:48px 40px;text-align:center;background:rgba(245,243,240,.04)}
+  .fmi-icon{font-size:1.4rem;color:var(--spark);margin-bottom:16px}
+  .fmi-label{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:700;color:var(--pavement);margin-bottom:10px}
+  .fmi-sub{color:rgba(245,243,240,.65);font-size:.97rem;margin-bottom:30px}
+  .fmi-btn{display:inline-block;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;font-weight:700;background:var(--spark);color:var(--midnight);text-decoration:none;padding:14px 32px;border-radius:40px;transition:opacity .2s}
+  .fmi-btn:hover{opacity:.88}
+  .fmi-btn .th{color:rgba(42,46,61,.65);font-size:.8em;margin-top:4px;letter-spacing:0}
+
+  /* CLOSING */
+  .closing{position:relative;color:var(--pavement);text-align:center;padding:130px 24px;overflow:hidden}
+  .closing .bg{position:absolute;inset:0;background:url('images/p10_030.jpg') center/cover}
+  .closing .veil{position:absolute;inset:0;background:linear-gradient(rgba(42,46,61,.82),rgba(31,34,46,.9))}
+  .closing .wrap{position:relative;z-index:2}
+  .closing h2{font-size:clamp(2rem,5vw,3.4rem);max-width:840px;margin:0 auto 22px}
+  .closing h2 .accent{color:var(--spark);font-style:italic}
+  .closing p{color:rgba(245,243,240,.82);max-width:600px;margin:0 auto 10px}
+  .btn{display:inline-block;margin-top:24px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;font-weight:700;background:var(--spark);color:var(--midnight);padding:16px 34px;border-radius:40px;text-decoration:none;transition:.25s ease}
+  .btn:hover{transform:translateY(-3px);box-shadow:0 16px 30px -12px rgba(242,184,38,.5)}
+  footer{background:#1f222e;color:rgba(245,243,240,.5);text-align:center;padding:32px 24px;font-family:Arial,sans-serif;font-size:.7rem;letter-spacing:.06em}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="brandmark">Renaissance Phuket</div>
+  <nav class="nav-links">
+    <a href="#about">About</a>
+    <a href="#positioning">Positioning</a>
+    <a href="#values">Values</a>
+    <a href="#pillars">Pillars</a>
+    <a href="#outlets">The Resort</a>
+    <a href="#dyk">Did You Know</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="bg"></div><div class="veil"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Renaissance Phuket Resort &amp; Spa<span class="th">เรเนซองส์ ภูเก็ต รีสอร์ท แอนด์ สปา</span></div>
+    <h1 class="display">Discover <span class="accent">This Way</span></h1>
+    <p class="sub">Make every stay feel a little less expected, and a lot more memorable.<span class="th">ทำให้ทุกการเข้าพัก "พิเศษกว่าที่คาดหวังไว้" และ "น่าจดจำมากยิ่งขึ้น"</span></p>
+  </div>
+  <div class="scroll-cue">Scroll · เลื่อนลง</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about dark" id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <div class="eyebrow">About Renaissance Hotels<span class="th">เกี่ยวกับโรงแรมในเครือ เรเนซองส์</span></div>
+      <p class="lead" style="margin-top:22px">Renaissance Hotels is Marriott's original lifestyle brand, built on <span class="hl">discovery</span>. We believe travel should be more than just business. At every Renaissance hotel, guests experience something unexpected that connects them to the local neighborhood — through local culture, people, and moments.<span class="th">เรเนซองส์ คือแบรนด์ไลฟ์สไตล์ดั้งเดิมของแมริออทที่เน้นเรื่อง "การค้นพบ" เราเชื่อว่าการเดินทางไม่ใช่แค่เรื่องธุรกิจ แต่ควรได้สัมผัสประสบการณ์ที่แตกต่างและเชื่อมโยงกับท้องถิ่น หน้าที่ของเราคือช่วยให้แขกได้ค้นพบเสน่ห์ของจุดหมายปลายทาง ผ่านวัฒนธรรม ผู้คน และประสบการณ์จริง</span></p>
+    </div>
+    <div class="figure reveal"><img src="images/p02_002.jpg" alt="Guest discovering the Andaman coast"></div>
+  </div>
+</section>
+
+<!-- POSITIONING -->
+<section id="positioning" style="padding:92px 24px">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Brand Positioning &amp; Target Audience<span class="th">จุดยืนของแบรนด์ และกลุ่มเป้าหมาย</span></div>
+      <h2 class="display">Spontaneous Discovery<span class="th" style="font-size:.5em;color:var(--cargo);display:block;margin-top:8px">การค้นพบแบบไม่คาดคิด</span></h2>
+    </div>
+    <div class="pos-grid">
+      <div class="pos-card reveal">
+        <div class="eyebrow" style="color:var(--cargo)">Our Positioning<span class="th">จุดยืนของแบรนด์</span></div>
+        <h3 class="display" style="font-size:1.25rem;margin-top:8px">Connect to the neighborhood</h3>
+        <p>We connect guests to the neighborhood through unexpected design, local experiences, and genuine interactions. Navigators and evening rituals help guests explore, meet locals, and discover something new every stay.<span class="th">เราพาแขกเชื่อมต่อกับย่านท้องถิ่น ผ่านดีไซน์ที่แตกต่าง ประสบการณ์ท้องถิ่น และการบริการที่จริงใจ โดยมี "เนวิเกเตอร์" และกิจกรรมช่วยให้แขกได้สำรวจ พบปะ และค้นพบสิ่งใหม่ในทุกการเข้าพัก</span></p>
+        <div class="pos-figure"><img src="images/p04_004.jpg" alt="Local neighborhood market experience"></div>
+      </div>
+      <div class="pos-card dark reveal">
+        <div class="eyebrow">Target Audience — The Spontaneous Explorer<span class="th">กลุ่มเป้าหมาย — นักสำรวจแบบไม่คาดคิด</span></div>
+        <h3 class="display" style="font-size:1.25rem;margin-top:8px">Loves to explore</h3>
+        <p>A modern traveler who loves to explore. They seek authentic local experiences, enjoy new cultures, and don't want to miss out on anything.<span class="th">นักเดินทางยุคใหม่ที่รักการค้นหา ชอบประสบการณ์ท้องถิ่น เปิดรับวัฒนธรรมใหม่ และไม่อยากพลาดทุกช่วงเวลาสำคัญ</span></p>
+        <div class="pos-figure"><img src="images/p03_003.jpg" alt="The curious spontaneous explorer"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values" id="values">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Brand Values<span class="th">คุณค่าของแบรนด์</span></div>
+      <h2 class="display">The Three I's</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal"><div class="num">01</div><h3 class="display">Independent</h3><p>We are original and unique. We offer distinctive choices to help guests enjoy their stay their way.<span class="th">มีเอกลักษณ์เฉพาะตัว — เรามีความเป็นตัวของตัวเอง นำเสนอทางเลือกที่โดดเด่นให้แขกได้ใช้เวลาในแบบของเขา</span></p></div>
+      <div class="value-card reveal"><div class="num">02</div><h3 class="display">Intriguing</h3><p>We inspire curiosity and exploration. We create memorable, sensory experiences beyond the ordinary.<span class="th">น่าค้นหา น่าหลงใหล — เราสร้างความน่าสนใจ กระตุ้นความอยากค้นพบ มอบประสบการณ์ที่พิเศษและแตกต่างจากเดิม</span></p></div>
+      <div class="value-card reveal"><div class="num">03</div><h3 class="display">Indigenous</h3><p>We connect guests to the local culture, helping them discover the destination easily and authentically.<span class="th">เชื่อมโยงกับท้องถิ่น — เราสะท้อนและนำเสนอความเป็นท้องถิ่น ช่วยให้แขกค้นพบจุดหมายปลายทางได้อย่างง่ายและแท้จริง</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars dark" id="pillars">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Brand Pillars<span class="th">เสาหลักของแบรนด์</span></div>
+      <h2 class="display">Three ways we tell our story</h2>
+      <p class="intro">Tap each pillar to explore how it comes to life at Mai Khao.<span class="th">แตะแต่ละเสาหลักเพื่อดูตัวอย่างจริงที่หาดไม้ขาว</span></p>
+    </div>
+    <div class="pillar reveal" onclick="togglePillar(this)">
+      <div class="pnum">1</div>
+      <div>
+        <h3 class="display">Evenings</h3>
+        <p class="ptease">Evenings are vibrant and social. Guests enjoy local experiences, lively bars, and unique moments.<span class="th">ช่วงเวลายามค่ำคืนที่มีชีวิตชีวา — บรรยากาศสนุก น่าสนใจ มีสีสัน</span></p>
+        <div class="pdetail">
+          <div class="item">
+            <img src="images/p05_005.jpg" alt="Punch Bowl Ritual">
+            <div><strong>Punch Bowl Ritual · พันช์ โบล ริชวล</strong><p>A signature evening drink experience — fun, colorful drinks made with local ingredients and spirits, such as Chalong Bay Rum and pineapple.<span class="th">ประสบการณ์เครื่องดื่มช่วงเย็น สนุกและมีสีสัน ใช้วัตถุดิบและสุราท้องถิ่น เช่น Chalong Bay Rum และสับปะรด</span></p><em>Alcoholic: daily except Monday, 18:00–19:00 at The Lounge · Non-alcoholic: Monday 16:30–17:00 at Dino Pool<span class="th">มีแอลกอฮอล์: ทุกวัน ยกเว้นจันทร์ 18:00–19:00 ที่ The Lounge · ไม่มีแอลกอฮอล์: วันจันทร์ 16:30–17:00 ที่ Dino Pool</span></em></div>
+          </div>
+        </div>
+      </div>
+      <div class="toggle">+</div>
+    </div>
+    <div class="pillar reveal" onclick="togglePillar(this)">
+      <div class="pnum">2</div>
+      <div>
+        <h3 class="display">Theatrical Design</h3>
+        <p class="ptease">Our design invites guests to explore each space. Contrasting elements and thoughtful details reflect the local identity.<span class="th">ดีไซน์ที่มีลูกเล่นและน่าค้นหา — ชวนให้แขกสำรวจทุกพื้นที่</span></p>
+        <div class="pdetail">
+          <div class="item"><img src="images/p06_006.jpg" alt="Sand Box marble on sand"><div><strong>High / Low Mix</strong><p>Blending contrasting materials to create visual interest and intrigue.<span class="th">การผสมผสานองค์ประกอบที่แตกต่าง เพื่อสร้างความน่าสนใจและความดึงดูดให้กับพื้นที่</span></p><em>Example: Marble tabletops at Sand Box contrast with the natural sand underfoot.<span class="th">ตัวอย่าง: โต๊ะหินอ่อนที่ Sand Box ตัดกับพื้นทรายธรรมชาติอย่างโดดเด่น</span></em></div></div>
+          <div class="item"><img src="images/p06_007.jpg" alt="Andaman pearl bedside lamp"><div><strong>Look &amp; Look Again</strong><p>Design that surprises and invites guests to take a second look, sparking curiosity.<span class="th">การออกแบบที่สร้างความคาดไม่ถึง ชวนให้แขกมองซ้ำอีกครั้ง</span></p><em>Inspired by the Andaman pearl: the bedside lamp shows two pearls — but only one lights up.<span class="th">ได้แรงบันดาลใจจากไข่มุกอันดามัน โคมไฟข้างเตียงเห็นสองเม็ด แต่สว่างเพียงหนึ่งเดียว</span></em></div></div>
+          <div class="item"><img src="images/p06_008.jpg" alt="Turtle-shell villa roof"><div><strong>True Placemaking</strong><p>Design inspired by the local neighborhood, reflecting its story and sense of place.<span class="th">การออกแบบที่สะท้อนเรื่องราวและอัตลักษณ์ของสถานที่</span></p><em>Pool villas feature turtle shell–style roofs as a tribute to Mai Khao Beach.<span class="th">วิลล่ามีหลังคาคล้ายกระดองเต่า เพื่อสื่อถึงหาดไม้ขาว</span></em></div></div>
+        </div>
+      </div>
+      <div class="toggle">+</div>
+    </div>
+    <div class="pillar reveal" onclick="togglePillar(this)">
+      <div class="pnum">3</div>
+      <div>
+        <h3 class="display">Neighborhood Connections</h3>
+        <p class="ptease">Connecting guests with local people and experiences rooted in the community.<span class="th">เชื่อมโยงกับชุมชนท้องถิ่น — เชื่อมโยงแขกกับผู้คนและประสบการณ์ท้องถิ่น</span></p>
+        <div class="pdetail">
+          <div class="item"><img src="images/p07_009.jpg" alt="Navigator in market"><div><strong>Navigators</strong><p>Inspiring guests to discover unique local experiences and the true spirit of the neighborhood.<span class="th">สร้างแรงบันดาลใจให้แขกค้นพบประสบการณ์ท้องถิ่นที่มีเอกลักษณ์</span></p></div></div>
+          <div class="item"><img src="images/p07_010.jpg" alt="Andaman local ingredients"><div><strong>Ingredients</strong><p>Authentic local ingredients tell the story — from Andaman seafood to traditional Phuket recipes.<span class="th">วัตถุดิบท้องถิ่นแท้ถ่ายทอดเรื่องราวของพื้นที่ ตั้งแต่อาหารทะเลอันดามันถึงเมนูพื้นเมืองภูเก็ต</span></p></div></div>
+          <div class="item"><img src="images/p07_011.jpg" alt="Sino-Portuguese attraction"><div><strong>Attractions</strong><p>Hidden gems beyond the usual: Baan Ar-Jor, Sarasin Bridge, and the authentic neighborhoods of northern Phuket.<span class="th">แนะนำสถานที่ลับ นอกเหนือแหล่งท่องเที่ยวทั่วไป เช่น บ้านอาจ้อ และสะพานสารสิน</span></p></div></div>
+          <div class="item"><img src="images/p07_012.jpg" alt="Phuket Vegetarian Festival culture"><div><strong>Culture</strong><p>Connecting guests through local traditions, festivals, Thai greetings, arts, and local artists' work.<span class="th">เชื่อมโยงแขกผ่านประเพณี เทศกาล การต้อนรับแบบไทย ศิลปะวัฒนธรรม และงานของศิลปินท้องถิ่น</span></p></div></div>
+        </div>
+      </div>
+      <div class="toggle">+</div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTLETS -->
+<section class="outlets" id="outlets">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Product Knowledge<span class="th">ความรู้เกี่ยวกับสินค้าและบริการของโรงแรม</span></div>
+      <h2 class="display">Where the story lives</h2>
+    </div>
+    <!-- WHERE WE ARE -->
+    <div class="bs-dest reveal">
+      <div class="eyebrow">Where We Are · <span class="th" style="display:inline;color:rgba(245,243,240,.65)">ที่ตั้งของเรา</span></div>
+      <h3 class="display" style="font-size:clamp(1.5rem,3vw,2.2rem);margin:10px 0 6px;color:var(--pavement)">Mai Khao Beach, Phuket</h3>
+      <p class="loc-intro">Beachfront resort on Mai Khao Beach, adjacent to Sirinath National Park — 20 minutes from Phuket International Airport.<span class="th">รีสอร์ทริมชายหาดบนหาดไม้ขาว ติดกับอุทยานแห่งชาติสิรินาถ — ห่างจากสนามบินนานาชาติภูเก็ตเพียง 20 นาที</span></p>
+
+      <!-- Tabs -->
+      <div class="dest-tab-nav">
+        <button class="dest-tab-btn active" onclick="bsShowTab('phuket',event)">Phuket &amp; Surroundings<span class="th" style="display:inline;font-size:.85em;margin-left:6px;opacity:.7">ภูเก็ตและรอบข้าง</span></button>
+        <button class="dest-tab-btn" onclick="bsShowTab('resort',event)">Resort Map &amp; Activities<span class="th" style="display:inline;font-size:.85em;margin-left:6px;opacity:.7">แผนผังรีสอร์ทและกิจกรรม</span></button>
+      </div>
+
+      <!-- TAB 1: Phuket Map -->
+      <div id="bs-tab-phuket" class="dest-tab active">
+        <div class="phuket-map-layout">
+          <div class="phuket-map-visual" aria-label="Phuket map with highlighted guest recommendations">
+            <img src="images/slide02_003.png" alt="Map of Phuket with Renaissance Phuket and selected highlights">
+            <button class="phuket-pin hero active" style="--x:28%;--y:9%" data-destination="hotel" onclick="bsSelectDest('hotel')" onmouseenter="bsSelectDest('hotel')" type="button"><span class="pin-number">H</span><span class="pin-name">Renaissance Phuket</span></button>
+            <button class="phuket-pin" style="--x:34%;--y:13%" data-destination="turtle" onclick="bsSelectDest('turtle')" onmouseenter="bsSelectDest('turtle')" type="button"><span class="pin-number">1</span><span class="pin-name">Turtle Village</span></button>
+            <button class="phuket-pin" style="--x:28%;--y:4%" data-destination="sarasin" onclick="bsSelectDest('sarasin')" onmouseenter="bsSelectDest('sarasin')" type="button"><span class="pin-number">2</span><span class="pin-name">Sarasin Bridge</span></button>
+            <button class="phuket-pin" style="--x:37%;--y:10%" data-destination="pru" onclick="bsSelectDest('pru')" onmouseenter="bsSelectDest('pru')" type="button"><span class="pin-number">3</span><span class="pin-name">Pru Jae Son</span></button>
+            <button class="phuket-pin" style="--x:64%;--y:72%" data-destination="town" onclick="bsSelectDest('town')" onmouseenter="bsSelectDest('town')" type="button"><span class="pin-number">4</span><span class="pin-name">Phuket Town</span></button>
+            <button class="phuket-pin" style="--x:25%;--y:62%" data-destination="patong" onclick="bsSelectDest('patong')" onmouseenter="bsSelectDest('patong')" type="button"><span class="pin-number">5</span><span class="pin-name">Patong</span></button>
+            <button class="phuket-pin" style="--x:38%;--y:18%" data-destination="airport" onclick="bsSelectDest('airport')" onmouseenter="bsSelectDest('airport')" type="button"><span class="pin-number">6</span><span class="pin-name">Phuket Airport</span></button>
+            <div class="phuket-map-card" id="bsDestCard">
+              <div class="map-card-kicker" id="bsDestKicker">Hotel Anchor · จุดอ้างอิงหลัก</div>
+              <h4 id="bsDestTitle">Renaissance Phuket Resort &amp; Spa</h4>
+              <div class="map-card-meta">
+                <span id="bsDestCat">Beachfront resort</span>
+                <span id="bsDestDist">Anchor point</span>
+                <span id="bsDestTime">Mai Khao Beach</span>
+              </div>
+              <p id="bsDestDesc">The main reference point for every journey, set on Mai Khao Beach beside Sirinath National Park.</p>
+            </div>
+          </div>
+          <div>
+            <div class="eyebrow" style="color:var(--spark);margin-bottom:10px">Recommended Spots · <span style="opacity:.7">จุดแนะนำสำหรับแขก</span></div>
+            <h3 class="display" style="font-size:1.5rem;color:var(--pavement);margin-bottom:16px">A Few Places to Point Guests Toward</h3>
+            <div class="phuket-rec-grid">
+              <button class="rec-card active" data-destination-card="hotel" onclick="bsSelectDest('hotel')" type="button"><strong>Hotel Anchor · จุดอ้างอิงหลัก</strong><h3>Mai Khao Beach</h3><p>The resort sits beachfront on Mai Khao Beach, adjacent to Sirinath National Park.</p><div class="rec-meta"><span>At resort</span><span>0 min</span></div></button>
+              <button class="rec-card" data-destination-card="turtle" onclick="bsSelectDest('turtle')" type="button"><strong>1 · Shopping · ช้อปปิ้ง</strong><h3>Turtle Village</h3><p>Nearby shopping and dining — complimentary transfer every hour.</p><div class="rec-meta"><span>2 km</span><span>5 min by car</span></div></button>
+              <button class="rec-card" data-destination-card="sarasin" onclick="bsSelectDest('sarasin')" type="button"><strong>2 · Viewpoint · จุดชมวิว</strong><h3>Sarasin Bridge</h3><p>A northbound gateway toward Phang Nga and coastal views.</p><div class="rec-meta"><span>Approx. 6 km</span><span>13 min by car</span></div></button>
+              <button class="rec-card" data-destination-card="pru" onclick="bsSelectDest('pru')" type="button"><strong>3 · Local Discovery · ธรรมชาติ</strong><h3>Pru Jae Son</h3><p>A scenic mangrove setting for cycling close to the resort.</p><div class="rec-meta"><span>0 km</span><span>0 min</span></div></button>
+              <button class="rec-card" data-destination-card="town" onclick="bsSelectDest('town')" type="button"><strong>4 · Culture · วัฒนธรรม</strong><h3>Phuket Town</h3><p>Hotel shuttle to Central Floresta, three times daily.</p><div class="rec-meta"><span>Approx. 38 km</span><span>50 min by car</span></div></button>
+              <button class="rec-card" data-destination-card="patong" onclick="bsSelectDest('patong')" type="button"><strong>5 · Attractions · แหล่งท่องเที่ยว</strong><h3>Patong</h3><p>A sandy, crescent beach is lined with cafes, restaurants, bars and night life.</p><div class="rec-meta"><span>Approx. 35 km</span><span>50 min by car</span></div></button>
+              <button class="rec-card" data-destination-card="airport" onclick="bsSelectDest('airport')" type="button"><strong>6 · Arrival · สนามบิน</strong><h3>Phuket International Airport</h3><p>The key arrival point — just 20 minutes from the resort.</p><div class="rec-meta"><span>Approx. 20 min</span><span>By car</span></div></button>
+            </div>
+          </div>
+        </div>
+        <div class="map-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#F2B826;border:2px solid #c49000"></div>Renaissance Phuket</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#F2B826"></div>Guest highlights · จุดแนะนำสำหรับแขก</div>
+        </div>
+        <div class="map-shuttle">
+          <div class="shuttle-item">
+            <div class="shuttle-label">Shuttle Service · บริการรถรับส่ง</div>
+            <p>3× daily: Hotel ↔ Phuket Town &amp; Central Floresta<span class="th">3 เที่ยวต่อวัน: โรงแรม ↔ ภูเก็ตทาวน์ &amp; เซ็นทรัล ฟลอเรสต้า</span></p>
+            <p>3× daily: Hotel ↔ Patong (small fee applies)<span class="th">3 เที่ยวต่อวัน: โรงแรม ↔ ป่าตอง (คิดค่าบริการเล็กน้อย)</span></p>
+          </div>
+          <div class="shuttle-item">
+            <div class="shuttle-label">Key Distances · ระยะทางสำคัญ</div>
+            <p>Phuket Airport: ~20 min &nbsp;|&nbsp; Turtle Village: 2 km · 5 min</p>
+            <p>Pru Jae Son: 0 km · 0 min &nbsp;|&nbsp; Phuket Town: ~38 km · 50 min</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: Resort Map & Activities -->
+      <div id="bs-tab-resort" class="dest-tab">
+        <div class="resort-intro">
+          <div class="r-stat"><div class="n">32</div><div class="l">In-Resort Activities<span class="th">กิจกรรมในรีสอร์ท</span></div></div>
+          <div class="r-stat"><div class="n">23</div><div class="l">Nearby Experiences<span class="th">ประสบการณ์ใกล้เคียง</span></div></div>
+          <div class="r-stat"><div class="n">6</div><div class="l">Dining Venues<span class="th">ร้านอาหารและบาร์</span></div></div>
+          <div class="r-stat"><div class="n">55</div><div class="l">Total Discoveries<span class="th">สิ่งที่รอให้ค้นพบ</span></div></div>
+        </div>
+        <div class="aerial-map-container">
+          <div class="aerial-map-stage" aria-label="Aerial resort map with numbered locations">
+            <img src="images/HKTBR_Aerial_Top_View_Map.jpg" alt="Aerial top view of Renaissance Phuket Resort & Spa">
+            <div class="beach-label">Mai Khao Beach</div>
+            <button class="map-num-pin" style="--x:78%;--y:46%" onclick="bsHighlightPin('1')" data-pin="1" aria-label="1 Lobby">1</button>
+            <button class="map-num-pin" style="--x:89%;--y:29%" onclick="bsHighlightPin('2')" data-pin="2" aria-label="2 Parking">2</button>
+            <button class="map-num-pin" style="--x:82%;--y:31%" onclick="bsHighlightPin('3')" data-pin="3" aria-label="3 R Ballroom">3</button>
+            <button class="map-num-pin" style="--x:72.5%;--y:46%" onclick="bsHighlightPin('4')" data-pin="4" aria-label="4 Loca Vore">4</button>
+            <button class="map-num-pin" style="--x:78.8%;--y:58%" onclick="bsHighlightPin('5')" data-pin="5" aria-label="5 The Lounge">5</button>
+            <button class="map-num-pin" style="--x:73.5%;--y:58%" onclick="bsHighlightPin('6')" data-pin="6" aria-label="6 Doppio">6</button>
+            <button class="map-num-pin" style="--x:36%;--y:70%" onclick="bsHighlightPin('7')" data-pin="7" aria-label="7 Takieng">7</button>
+            <button class="map-num-pin" style="--x:31.7%;--y:70%" onclick="bsHighlightPin('8')" data-pin="8" aria-label="8 Sand Box">8</button>
+            <button class="map-num-pin" style="--x:45.5%;--y:37%" onclick="bsHighlightPin('20')" data-pin="20" aria-label="20 Herb Garden">20</button>
+            <button class="map-num-pin" style="--x:74.7%;--y:64%" onclick="bsHighlightPin('10')" data-pin="10" aria-label="10 Gym">10</button>
+            <button class="map-num-pin" style="--x:57%;--y:45%" onclick="bsHighlightPin('11')" data-pin="11" aria-label="11 Quan Spa">11</button>
+            <button class="map-num-pin" style="--x:62%;--y:60%" onclick="bsHighlightPin('12')" data-pin="12" aria-label="12 Kids World & Dino Pool">12</button>
+            <button class="map-num-pin" style="--x:32.4%;--y:59%" onclick="bsHighlightPin('13')" data-pin="13" aria-label="13 Ren Pool">13</button>
+            <button class="map-num-pin" style="--x:52%;--y:75%" onclick="bsHighlightPin('14')" data-pin="14" aria-label="14 Deluxe Rooms">14</button>
+            <button class="map-num-pin" style="--x:66%;--y:75%" onclick="bsHighlightPin('14')" data-pin="14" aria-label="14 Deluxe Rooms">14</button>
+            <button class="map-num-pin" style="--x:55%;--y:28%" onclick="bsHighlightPin('15')" data-pin="15" aria-label="15 Deluxe Lagoon Rooms">15</button>
+            <button class="map-num-pin" style="--x:64%;--y:28%" onclick="bsHighlightPin('16')" data-pin="16" aria-label="16 One Bedroom Suites">16</button>
+            <button class="map-num-pin" style="--x:44.7%;--y:70%" onclick="bsHighlightPin('16')" data-pin="16" aria-label="16 One Bedroom Suites">16</button>
+            <button class="map-num-pin" style="--x:39.7%;--y:41%" onclick="bsHighlightPin('17')" data-pin="17" aria-label="17 Pool Villas">17</button>
+            <button class="map-num-pin" style="--x:29.2%;--y:43%" onclick="bsHighlightPin('18')" data-pin="18" aria-label="18 Oceanfront Pool Villas">18</button>
+            <button class="map-num-pin" style="--x:27.8%;--y:28%" onclick="bsHighlightPin('19')" data-pin="19" aria-label="19 Duplex Oceanfront Villa">19</button>
+            <button class="map-num-pin" style="--x:41%;--y:70%" onclick="bsHighlightPin('9')" data-pin="9" aria-label="9 Yunami">9</button>
+          </div>
+          <div class="resort-number-menu">
+            <div class="num-menu-col">
+              <h4>Public Area · พื้นที่สาธารณะ</h4>
+              <div class="num-menu-list">
+                <button class="num-menu-item" onclick="bsHighlightPin('1')"><span class="num-badge">1</span><span class="num-label">Lobby · ล็อบบี้</span></button>
+                <button class="num-menu-item" onclick="bsHighlightPin('13')"><span class="num-badge">13</span><span class="num-label">Ren Pool · สระว่ายน้ำ</span></button>
+                <button class="num-menu-item" onclick="bsHighlightPin('2')"><span class="num-badge">2</span><span class="num-label">Parking · ที่จอดรถ</span></button>
+                <button class="num-menu-item" onclick="bsHighlightPin('20')"><span class="num-badge">20</span><span class="num-label">Herb Garden · สวนสมุนไพร</span></button>
+                <button class="num-menu-item" onclick="bsHighlightPin('3')"><span class="num-badge">3</span><span class="num-label">R Ballroom · บอลรูม</span></button>
+              </div>
+            </div>
+            <div class="num-menu-col">
+              <h4>Accommodations · ห้องพัก</h4>
+              <div class="num-menu-list">
+                <button class="num-menu-item" onclick="bsHighlightPin('14')"><span class="num-badge">14</span><span class="num-label">Deluxe Rooms</span></button>
+                <button class="num-menu-item" onclick="bsHighlightPin('15')"><span class="num-badge">15</span><span class="num-label">Deluxe Lagoon Rooms</span></button>
+                <button class="num-menu-item" onclick="bsHighlightPin('16')"><span class="num-badge">16</span><span class="num-label">One Bedroom Suites</span></button>
+                <button class="num-menu-item" onclick="bsHighlightPin('17')"><span class="num-badge">17</span><span class="num-label">Pool Villas</span></button>
+                <button class="num-menu-item" onclick="bsHighlightPin('18')"><span class="num-badge">18</span><span class="num-label">Oceanfront Pool Villas</span></button>
+                <button class="num-menu-item" onclick="bsHighlightPin('19')"><span class="num-badge">19</span><span class="num-label">Duplex Oceanfront Villa</span></button>
+              </div>
+            </div>
+            <div class="num-menu-col">
+              <h4>Activities · กิจกรรม</h4>
+              <div class="num-menu-list">
+                <button class="num-menu-item" onclick="bsHighlightPin('10')"><span class="num-badge">10</span><span class="num-label">Gym · ฟิตเนส</span></button>
+                <button class="num-menu-item" onclick="bsHighlightPin('11')"><span class="num-badge">11</span><span class="num-label">Quan Spa · สปา</span></button>
+                <button class="num-menu-item" onclick="bsHighlightPin('12')"><span class="num-badge">12</span><span class="num-label">Kids World &amp; Dino Pool</span></button>
+              </div>
+            </div>
+            <div class="num-menu-col">
+              <h4>Restaurants &amp; Bars · ร้านอาหาร</h4>
+              <div class="num-menu-list">
+                <button class="num-menu-item" onclick="bsHighlightPin('4')"><span class="num-badge">4</span><span class="num-label">Loca Vore</span></button>
+                <button class="num-menu-item" onclick="bsHighlightPin('7')"><span class="num-badge">7</span><span class="num-label">Takieng</span></button>
+                <button class="num-menu-item" onclick="bsHighlightPin('5')"><span class="num-badge">5</span><span class="num-label">The Lounge</span></button>
+                <button class="num-menu-item" onclick="bsHighlightPin('8')"><span class="num-badge">8</span><span class="num-label">Sand Box</span></button>
+                <button class="num-menu-item" onclick="bsHighlightPin('6')"><span class="num-badge">6</span><span class="num-label">Doppio</span></button>
+                <button class="num-menu-item" onclick="bsHighlightPin('9')"><span class="num-badge">9</span><span class="num-label">Yunami</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /WHERE WE ARE -->
+
+    <div class="stat-row reveal">
+      <div class="stat"><div class="n">180</div><div class="l">Rooms<span class="th">ห้องพัก</span></div></div>
+      <div class="stat"><div class="n">4</div><div class="l">Restaurants<span class="th">ร้านอาหาร</span></div></div>
+      <div class="stat"><div class="n">2</div><div class="l">Bars<span class="th">บาร์</span></div></div>
+      <div class="stat"><div class="n">1</div><div class="l">Café<span class="th">คาเฟ่</span></div></div>
+    </div>
+    <!-- ACCOMMODATIONS -->
+    <div class="bs-rooms">
+      <div class="subhead-row reveal">
+        <div class="subhead">Accommodations · ห้องพักและวิลล่า</div>
+        <a class="subhead-cta" href="https://www.marriott.com/en-us/hotels/hktbr-renaissance-phuket-resort-and-spa/rooms/" target="_blank" rel="noopener">View All Rooms →<span class="th">ดูห้องพักทั้งหมด</span></a>
+      </div>
+      <div class="bs-rooms-grid">
+
+        <div class="bs-room reveal">
+          <div class="ph"><img src="images/Site - room type - 1.jpg" alt="Deluxe Room"></div>
+          <div class="body">
+            <div class="size">46 sqm · King or Twin</div>
+            <h4>Deluxe Room<span class="th"> · ห้องดีลักซ์</span></h4>
+            <p>Renovated room with warm wooden accents and a private terrace overlooking the tropical garden.<span class="th">ห้องที่ได้รับการปรับปรุงใหม่ พร้อมเฉลียงส่วนตัวหันหน้าสู่สวนเขตร้อน</span></p>
+          </div>
+        </div>
+
+        <div class="bs-room reveal">
+          <div class="ph"><img src="images/Site - room type - 2.jpg" alt="Deluxe Lagoon View"></div>
+          <div class="body">
+            <div class="size">46 sqm · King or Twin</div>
+            <h4>Deluxe Lagoon View<span class="th"> · ดีลักซ์ วิวลากูน</span></h4>
+            <p>Floor-to-ceiling windows frame the shimmering lagoon pool beyond a private terrace.<span class="th">หน้าต่างพานอรามาวิวสระลากูน พร้อมระเบียงส่วนตัว</span></p>
+          </div>
+        </div>
+
+        <div class="bs-room reveal">
+          <div class="ph"><img src="images/Site - room type - 3.jpg" alt="One Bedroom Suite"></div>
+          <div class="body">
+            <div class="size">97 sqm · King</div>
+            <h4>One Bedroom Suite<span class="th"> · วันเบดรูมสวีท</span></h4>
+            <p>Expansive two-room suite with a separate living area, kitchenette, and two private balconies.<span class="th">ห้องสวีทสองห้องขนาดใหญ่ พร้อมพื้นที่นั่งเล่นแยก และระเบียงส่วนตัวสองแห่ง</span></p>
+          </div>
+        </div>
+
+        <div class="bs-room reveal">
+          <div class="ph"><img src="images/Site - room type - 4.jpg" alt="One Bedroom Pool Villa"></div>
+          <div class="body">
+            <div class="size">117 sqm · King · Private Pool</div>
+            <h4>One Bedroom Pool Villa<span class="th"> · วิลล่าสระส่วนตัว</span></h4>
+            <p>Ground-floor villa with private plunge pool, natural materials, and open-plan living flowing to the pool terrace.<span class="th">วิลล่าชั้นล่างพร้อมสระส่วนตัว วัสดุธรรมชาติ และห้องนั่งเล่นเปิดโล่งสู่ระเบียง</span></p>
+          </div>
+        </div>
+
+        <div class="bs-room reveal">
+          <div class="ph"><img src="images/Site - room type - 5.jpg" alt="One Bedroom Oceanfront Pool Villa"></div>
+          <div class="body">
+            <div class="size">117 sqm · King · Oceanfront</div>
+            <h4>One Bedroom Oceanfront Pool Villa<span class="th"> · วิลล่าสระส่วนตัว วิวทะเล</span></h4>
+            <p>Steps from Mai Khao Beach with sweeping Andaman Sea views from the private pool and freestanding bathtub.<span class="th">ใกล้หาดไม้ขาว วิวทะเลอันดามันจากสระส่วนตัวและอ่างอาบน้ำอิสระ</span></p>
+          </div>
+        </div>
+
+        <div class="bs-room reveal">
+          <div class="ph"><img src="images/Site - room type - 6.jpg" alt="Duplex Oceanfront Villa"></div>
+          <div class="body">
+            <div class="size">337 sqm · 3 Bedrooms · 2 Levels</div>
+            <h4>Duplex Oceanfront Villa<span class="th"> · ดูเพล็กซ์วิลล่า วิวทะเล</span></h4>
+            <p>Our signature two-level beachfront villa with three bedrooms, private pool, full kitchen, and panoramic Andaman views.<span class="th">วิลล่าริมทะเล 2 ชั้น 3 ห้องนอน สระส่วนตัว ครัวครบครัน และวิวอันดามันแบบพาโนรามา</span></p>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /ACCOMMODATIONS -->
+
+    <div class="subhead-row reveal">
+        <div class="subhead">Restaurants &amp; Bars · ร้านอาหารและบาร์</div>
+        <a class="subhead-cta" href="https://www.marriott.com/en-us/hotels/hktbr-renaissance-phuket-resort-and-spa/dining/" target="_blank" rel="noopener">View All Dining →<span class="th">ดูร้านอาหารทั้งหมด</span></a>
+      </div>
+    <div class="outlet-grid" id="outlet-grid"></div>
+    <div class="subhead-row reveal">
+        <div class="subhead">Facilities · สิ่งอำนวยความสะดวก</div>
+        <a class="subhead-cta" href="https://www.marriott.com/en-us/hotels/hktbr-renaissance-phuket-resort-and-spa/experiences/" target="_blank" rel="noopener">View All Experiences →<span class="th">ดูกิจกรรมทั้งหมด</span></a>
+      </div>
+    <div class="outlet-grid" id="facility-grid"></div>
+  </div>
+</section>
+
+
+<!-- DID YOU KNOW -->
+<section class="dyk onwave" id="dyk">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Did You Know?<span class="th">คุณทราบหรือไม่?</span></div>
+      <h2 class="display">Built to be discovered</h2>
+    </div>
+    <div class="dyk-grid" id="dyk-grid"></div>
+  </div>
+</section>
+
+<!-- SOCIAL -->
+<section class="social dark" id="social">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Resort Activities &amp; Social Media<span class="th">กิจกรรมในโรงแรม และโซเชียลมีเดีย</span></div>
+      <h2 class="display">Stay connected</h2>
+    </div>
+    <div class="social-grid">
+      <div class="soc reveal">
+        <h4>Renaissance Phuket</h4>
+        <div class="links">
+          <a href="https://www.marriott.com/en-us/hotels/hktbr-renaissance-phuket-resort-and-spa/overview/" target="_blank" rel="noopener">Website</a>
+          <a href="https://www.facebook.com/renphuket/" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/renaissancephuket/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div class="soc reveal">
+        <h4>Takieng</h4>
+        <div class="links">
+          <a href="https://www.takiengphuket.com" target="_blank" rel="noopener">Website</a>
+          <a href="https://www.facebook.com/takiengphuket" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/takiengphuket/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.takiengphuket.com/our-menus" target="_blank" rel="noopener">Menu</a>
+        </div>
+      </div>
+      <div class="soc reveal">
+        <h4>Yunami</h4>
+        <div class="links">
+          <a href="https://www.yunamiphuket.com" target="_blank" rel="noopener">Website</a>
+          <a href="https://www.instagram.com/yunamiphuket/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div class="soc reveal">
+        <h4>Sand Box</h4>
+        <div class="links">
+          <a href="https://www.facebook.com/SandBoxBeachfrontBar" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/sand_box_beachfrontbar_eatery/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://marrstar.ent.box.com/folder/306795779748" target="_blank" rel="noopener">Menu</a>
+        </div>
+      </div>
+      <div class="soc reveal">
+        <h4>Quan Spa</h4>
+        <div class="links">
+          <a href="https://www.marriott.com/en-us/hotels/hktbr-renaissance-phuket-resort-and-spa/spa/" target="_blank" rel="noopener">Website</a>
+          <a href="https://www.facebook.com/QuanSpaPhuket" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/quanspaphuket/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://marrstar.ent.box.com/s/uime33r9n6704e8hi2sd8ceyn1zbobll" target="_blank" rel="noopener">Menu</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOR MORE INFORMATION -->
+    <div class="fmi reveal">
+      <div class="fmi-inner">
+        <div class="fmi-icon">✦</div>
+        <p class="fmi-label">For more information<span class="th">สำหรับข้อมูลเพิ่มเติม</span></p>
+        <p class="fmi-sub" id="fmi-sub">Explore our activities, promotions, and resort details.<span class="th">ค้นพบกิจกรรม โปรโมชั่น และข้อมูลเกี่ยวกับรีสอร์ทของเรา</span></p>
+        <a class="fmi-btn" id="fmi-btn" href="https://taptastego.com/hktbr" target="_blank" rel="noopener">Discover More Promotions →<span class="th">เลือกดูโปรโมชั่นทั้งหมด</span></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="bg"></div><div class="veil"></div>
+  <div class="wrap reveal">
+    <h2 class="display"><span class="accent">Discover Mai Khao.</span></h2>
+    <p>Make an unexpected discovery, encounter hidden gems, and find the authentic experiences that immerse you in the DNA of Mai Khao.</p>
+    <p class="th">ค้นพบสิ่งที่ไม่คาดคิด พบกับมุมที่ซ่อนอยู่ และสัมผัสประสบการณ์ท้องถิ่นแท้จริงที่หลอมรวมคุณเข้ากับเสน่ห์ของไม้ขาว</p>
+    <a class="btn" href="#">Discover This Way · ค้นพบในแบบของคุณ</a>
+  </div>
+</section>
+
+<footer>© 2026 Renaissance Phuket Resort &amp; Spa · Marriott International · Mai Khao Beach, Phuket</footer>
+
+<script src="content.js"></script>
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+  function togglePillar(el){el.classList.toggle('open')}
+
+  /* ── WHERE WE ARE MAP ────────────────────────────────────── */
+  function bsShowTab(tab,e){
+    document.querySelectorAll('.dest-tab').forEach(el=>el.classList.remove('active'));
+    document.querySelectorAll('.dest-tab-btn').forEach(btn=>btn.classList.remove('active'));
+    document.getElementById('bs-tab-'+tab).classList.add('active');
+    e.currentTarget.classList.add('active');
+  }
+
+  const bsDestData={
+    hotel:{kicker:'Hotel Anchor · จุดอ้างอิงหลัก',title:'Renaissance Phuket Resort & Spa',cat:'Beachfront resort',dist:'Anchor point',time:'Mai Khao Beach',desc:'The main reference point for every journey, set on Mai Khao Beach beside Sirinath National Park. · จุดอ้างอิงหลักสำหรับทุกการเดินทาง ตั้งอยู่ริมหาดไม้ขาว'},
+    turtle:{kicker:'1 · Shopping · ช้อปปิ้ง',title:'Turtle Village',cat:'Shopping & dining',dist:'2 km from hotel',time:'5 min by car',desc:'A nearby stop for easy shopping and dining, with complimentary transfer every hour. · จุดช้อปปิ้งและทานอาหารใกล้โรงแรม บริการรถรับส่งฟรีทุกชั่วโมง'},
+    sarasin:{kicker:'2 · Viewpoint · จุดชมวิว',title:'Sarasin Bridge',cat:'Viewpoint / gateway',dist:'Approx. 6 km',time:'13 min by car',desc:'A northbound gateway toward Phang Nga with sweeping coastal views. · ประตูสู่พังงา พร้อมวิวชายฝั่งอันสวยงาม'},
+    pru:{kicker:'3 · Local Discovery · ธรรมชาติ',title:'Pru Jae Son Mangroves',cat:'Mangrove cycling',dist:'0 km',time:'0 min',desc:'A scenic mangrove setting for cycling experiences close to the resort. · ป่าโกงกางสวยงาม เหมาะสำหรับประสบการณ์ปั่นจักรยาน'},
+    town:{kicker:'4 · Culture · วัฒนธรรม',title:'Phuket Town',cat:'Culture / day trip',dist:'Approx. 38 km',time:'50 min by car',desc:'Connected by hotel shuttle to Central Floresta, three times daily. · เชื่อมต่อด้วยรถรับส่งโรงแรมไปยัง Central Floresta วันละ 3 เที่ยว'},
+    patong:{kicker:'5 · Attractions · แหล่งท่องเที่ยว',title:'Patong',cat:'Beach town',dist:'Approx. 35 km',time:'50 min by car',desc:'A sandy, crescent beach is lined with cafes, restaurants, bars and night life. · ชายหาดทรายรูปพระจันทร์เสี้ยว เรียงรายด้วยคาเฟ่ ร้านอาหาร บาร์ และแหล่งบันเทิงยามค่ำคืน'},
+    airport:{kicker:'6 · Arrival · สนามบิน',title:'Phuket International Airport',cat:'Airport',dist:'Approx. 20 min',time:'By car',desc:'The key arrival point for guests — just 20 minutes from the resort. · สนามบินนานาชาติภูเก็ต ห่างจากรีสอร์ทเพียง 20 นาที'}
+  };
+
+  function bsSelectDest(key){
+    const d=bsDestData[key]; if(!d) return;
+    document.querySelectorAll('.phuket-pin').forEach(p=>p.classList.toggle('active',p.dataset.destination===key));
+    document.querySelectorAll('[data-destination-card]').forEach(c=>c.classList.toggle('active',c.dataset.destinationCard===key));
+    document.getElementById('bsDestKicker').textContent=d.kicker;
+    document.getElementById('bsDestTitle').textContent=d.title;
+    document.getElementById('bsDestCat').textContent=d.cat;
+    document.getElementById('bsDestDist').textContent=d.dist;
+    document.getElementById('bsDestTime').textContent=d.time;
+    document.getElementById('bsDestDesc').textContent=d.desc;
+  }
+
+  function bsHighlightPin(num){
+    document.querySelectorAll('.map-num-pin').forEach(p=>p.classList.toggle('active',p.dataset.pin===num));
+  }
+</script>
+</body>
+</html>
