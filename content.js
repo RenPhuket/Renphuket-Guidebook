@@ -171,8 +171,8 @@ const CONTENT = {
   dyk: [
     {
       num: "01",
-      image: "images/p10_030.jpg",
-      image_alt: "Turtle shell roofs",
+      image: "images/p10_023.jpg",
+      image_alt: "Aerial view of turtle shell roofs",
       en: "Villa, lobby, and The Lounge roofs are inspired by turtle shells — a tribute to Mai Khao Beach where sea turtles lay eggs from January to March.",
       th: "หลังคาวิลล่า ล็อบบี้ และ The Lounge ได้แรงบันดาลใจจากกระดองเต่า สื่อถึงหาดไม้ขาวซึ่งเป็นแหล่งวางไข่ของเต่าทะเล",
     },
@@ -221,7 +221,7 @@ const CONTENT = {
     },
     {
       num: "08",
-      image: "images/p10_023.jpg",
+      image: "images/p10_030.jpg",
       image_alt: "Hydra Collection lobby chairs",
       en: "The lobby's Hydra Collection chairs, by artist EggWong, echo the harmony of man and woman — organic shapes of coral and cuttlebone.",
       th: "เก้าอี้ Hydra Collection ที่ล็อบบี้ ออกแบบโดยศิลปิน EggWong ได้แรงบันดาลใจจากความสมดุลของชายและหญิง รูปทรงสะท้อนปะการังและกระดองปลาหมึก",
