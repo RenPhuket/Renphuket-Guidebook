@@ -119,6 +119,8 @@ const CONTENT = {
       body_th: "พื้นที่สำหรับเด็ก มีกิจกรรมสร้างสรรค์ เกม และการเรียนรู้แบบลงมือทำ ตั้งอยู่ใกล้ Dino Pool ที่มีสไลเดอร์และโซนเล่นน้ำ",
       hours_en: "Everyday · 9:00 AM – 6:00 PM",
       hours_th: "ทุกวัน · 09:00 – 18:00",
+      menu_url: "https://marrstar.box.com/s/yzfzflrnml8mu9vc4tt9e1le5xp91zu0",
+      menu_label: "View Activities →",
       acts: [
         "Northern Thai umbrella painting · วาดภาพร่มไทยภาคเหนือ",
         "Dino & unicorn pool inflatables · ของเล่นลอยน้ำไดโนเสาร์และยูนิคอร์น",
@@ -137,6 +139,8 @@ const CONTENT = {
       body_th: "ฟิตเนสครบครัน ทั้งเครื่องคาร์ดิโอ เวทเทรนนิ่ง และคลาสออกกำลังกาย เปิด 24 ชม. ทีมงานพร้อมให้บริการ 08:00–18:00",
       hours_en: "Open 24 hours · Staff 8:00 AM – 6:00 PM",
       hours_th: "เปิด 24 ชั่วโมง · เจ้าหน้าที่ 08:00 – 18:00",
+      menu_url: "https://marrstar.box.com/s/ndeh94072boucgivz7zjm1g64z8r5hzk",
+      menu_label: "View Activities →",
       acts: [
         "Muay Thai introductory class · คลาสมวยไทยเบื้องต้น",
         "Beach & pool yoga sessions · โยคะริมหาดและสระน้ำ",
@@ -272,7 +276,7 @@ function buildFacCard(o) {
       <p>${o.body_en}<span class="th">${o.body_th}</span></p>
       ${o.hours_en ? `<div class="hours">⏱ ${o.hours_en}<span class="th"> · ${o.hours_th}</span></div>` : ''}
       ${acts}
-      ${o.menu_url ? `<a class="outlet-menu-btn" href="${o.menu_url}" target="_blank" rel="noopener">View Menu →</a>` : ''}
+      ${o.menu_url ? `<a class="outlet-menu-btn" href="${o.menu_url}" target="_blank" rel="noopener">${o.menu_label || 'View Menu →'}</a>` : ''}
     </div>
   </div>`;
 }
