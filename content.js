@@ -59,7 +59,7 @@ const CONTENT = {
       sig_th: "เมนูแนะนำ: เบอร์เกอร์เนื้อวากิวนำเข้า",
       hours_en: "Everyday · 11:00 AM – 11:00 PM",
       hours_th: "ทุกวัน · 11:00 – 23:00",
-      menu_url: "https://marrstar.ent.box.com/folder/306795779748",
+      menu_url: "https://marrstar.box.com/s/vki7qbtsklhu92usuykkegqzxpr2gjws",
     },
     {
       id: "locavore",
