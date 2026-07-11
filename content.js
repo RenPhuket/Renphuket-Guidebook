@@ -30,6 +30,7 @@ const CONTENT = {
       sig_th: "เมนูแนะนำ: เนื้อสันนอกวากิว A5 จากคาโกชิมะ",
       hours_en: "Open for lunch & dinner",
       hours_th: "เปิดบริการมื้อกลางวันและมื้อค่ำ",
+      menu_url: "https://marrstar.box.com/s/zi6fpyakdbvwkkggz73eqxzn8o27p3yj",
     },
     {
       id: "takieng",
