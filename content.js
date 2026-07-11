@@ -31,6 +31,7 @@ const CONTENT = {
       hours_en: "Open for lunch & dinner",
       hours_th: "เปิดบริการมื้อกลางวันและมื้อค่ำ",
       menu_url: "https://marrstar.box.com/s/zi6fpyakdbvwkkggz73eqxzn8o27p3yj",
+      book_url: "https://www.sevenrooms.com/explore/yunamihktbr/reservations/create/search?tracking=renphuket-guidebook",
     },
     {
       id: "takieng",
@@ -46,6 +47,7 @@ const CONTENT = {
       hours_en: "Everyday · 12:00 PM – 11:00 PM",
       hours_th: "ทุกวัน · 12:00 – 23:00",
       menu_url: "https://www.takiengphuket.com/our-menus",
+      book_url: "https://www.sevenrooms.com/explore/takiengphukethktbr/reservations/create/search?tracking=renphuket-guidebook",
     },
     {
       id: "sandbox",
@@ -61,6 +63,7 @@ const CONTENT = {
       hours_en: "Everyday · 11:00 AM – 11:00 PM",
       hours_th: "ทุกวัน · 11:00 – 23:00",
       menu_url: "https://marrstar.box.com/s/vki7qbtsklhu92usuykkegqzxpr2gjws",
+      book_url: "https://www.sevenrooms.com/explore/sandboxbeachfrontbareateryhktbr/reservations/create/search?tracking=renphuket-guidebook",
     },
     {
       id: "locavore",
@@ -260,7 +263,10 @@ function buildOutletCard(o) {
       ${o.sig_en ? `<div class="sig">${o.sig_en}<span class="th">${o.sig_th}</span></div>` : ''}
       ${acts}
       ${o.hours_en ? `<div class="hours"><span>${o.hours_en}<span class="th">${o.hours_th}</span></span></div>` : ''}
-      ${o.menu_url ? `<a class="outlet-menu-btn" href="${o.menu_url}" target="_blank" rel="noopener">View Menu →</a>` : ''}
+      ${(o.menu_url || o.book_url) ? `<div class="outlet-btn-row">
+        ${o.menu_url ? `<a class="outlet-menu-btn" href="${o.menu_url}" target="_blank" rel="noopener">Menu →</a>` : ''}
+        ${o.book_url ? `<a class="outlet-menu-btn" href="${o.book_url}" target="_blank" rel="noopener">Book Table →</a>` : ''}
+      </div>` : ''}
     </div>
   </div>`;
 }
