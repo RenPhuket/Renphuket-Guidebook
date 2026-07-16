@@ -30,7 +30,8 @@ const CONTENT = {
       sig_th: "เมนูแนะนำ: เนื้อสันนอกวากิว A5 จากคาโกชิมะ",
       hours_en: "Everyday · 12:00 PM – 11:00 PM",
       hours_th: "ทุกวัน · 12:00 – 23:00",
-      menu_url: "https://marrstar.box.com/s/zi6fpyakdbvwkkggz73eqxzn8o27p3yj",
+      website_url: "https://www.yunamiphuket.com",
+      menu_url: "https://www.yunamiphuket.com/menu",
       book_url: "https://www.sevenrooms.com/explore/yunamihktbr/reservations/create/search?tracking=renphuket-guidebook",
     },
     {
@@ -46,6 +47,7 @@ const CONTENT = {
       sig_th: "เมนูแนะนำ: จั๊กจั่นทะเลทอดรสต้มยำ",
       hours_en: "Everyday · 12:00 PM – 11:00 PM",
       hours_th: "ทุกวัน · 12:00 – 23:00",
+      website_url: "https://www.takiengphuket.com",
       menu_url: "https://www.takiengphuket.com/our-menus",
       book_url: "https://www.sevenrooms.com/explore/takiengphukethktbr/reservations/create/search?tracking=renphuket-guidebook",
     },
@@ -263,7 +265,8 @@ function buildOutletCard(o) {
       ${o.sig_en ? `<div class="sig">${o.sig_en}<span class="th">${o.sig_th}</span></div>` : ''}
       ${acts}
       ${o.hours_en ? `<div class="hours"><span>${o.hours_en}<span class="th">${o.hours_th}</span></span></div>` : ''}
-      ${(o.menu_url || o.book_url) ? `<div class="outlet-btn-row">
+      ${(o.website_url || o.menu_url || o.book_url) ? `<div class="outlet-btn-row">
+        ${o.website_url ? `<a class="outlet-menu-btn" href="${o.website_url}" target="_blank" rel="noopener">Website →</a>` : ''}
         ${o.menu_url ? `<a class="outlet-menu-btn" href="${o.menu_url}" target="_blank" rel="noopener">Menu →</a>` : ''}
         ${o.book_url ? `<a class="outlet-menu-btn" href="${o.book_url}" target="_blank" rel="noopener">Book Table →</a>` : ''}
       </div>` : ''}
