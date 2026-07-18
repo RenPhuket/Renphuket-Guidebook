@@ -33,6 +33,7 @@ const CONTENT = {
       website_url: "https://www.yunamiphuket.com",
       menu_url: "https://www.yunamiphuket.com/menu",
       book_url: "https://www.sevenrooms.com/explore/yunamihktbr/reservations/create/search?tracking=renphuket-guidebook",
+      instagram_url: "https://www.instagram.com/yunamiphuket/",
     },
     {
       id: "takieng",
@@ -50,6 +51,8 @@ const CONTENT = {
       website_url: "https://www.takiengphuket.com",
       menu_url: "https://www.takiengphuket.com/our-menus",
       book_url: "https://www.sevenrooms.com/explore/takiengphukethktbr/reservations/create/search?tracking=renphuket-guidebook",
+      facebook_url: "https://www.facebook.com/takiengphuket",
+      instagram_url: "https://www.instagram.com/takiengphuket/",
     },
     {
       id: "sandbox",
@@ -66,6 +69,8 @@ const CONTENT = {
       hours_th: "ทุกวัน · 11:00 – 23:00",
       menu_url: "https://marrstar.box.com/s/vki7qbtsklhu92usuykkegqzxpr2gjws",
       book_url: "https://www.sevenrooms.com/explore/sandboxbeachfrontbareateryhktbr/reservations/create/search?tracking=renphuket-guidebook",
+      facebook_url: "https://www.facebook.com/SandBoxBeachfrontBar",
+      instagram_url: "https://www.instagram.com/sand_box_beachfrontbar_eatery/",
     },
     {
       id: "locavore",
@@ -269,6 +274,10 @@ function buildOutletCard(o) {
         ${o.website_url ? `<a class="outlet-menu-btn" href="${o.website_url}" target="_blank" rel="noopener">Website →</a>` : ''}
         ${o.menu_url ? `<a class="outlet-menu-btn" href="${o.menu_url}" target="_blank" rel="noopener">Menu →</a>` : ''}
         ${o.book_url ? `<a class="outlet-menu-btn" href="${o.book_url}" target="_blank" rel="noopener">Book Table →</a>` : ''}
+      </div>` : ''}
+      ${(o.facebook_url || o.instagram_url) ? `<div class="outlet-soc-row">
+        ${o.facebook_url ? `<a class="outlet-soc-btn" href="${o.facebook_url}" target="_blank" rel="noopener">Facebook</a>` : ''}
+        ${o.instagram_url ? `<a class="outlet-soc-btn" href="${o.instagram_url}" target="_blank" rel="noopener">Instagram</a>` : ''}
       </div>` : ''}
     </div>
   </div>`;
