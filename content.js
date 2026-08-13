@@ -241,6 +241,24 @@ const CONTENT = {
       en: "The lobby's Hydra Collection chairs, by artist EggWong, echo the harmony of man and woman — organic shapes of coral and cuttlebone.",
       th: "เก้าอี้ Hydra Collection ที่ล็อบบี้ ออกแบบโดยศิลปิน EggWong ได้แรงบันดาลใจจากความสมดุลของชายและหญิง รูปทรงสะท้อนปะการังและกระดองปลาหมึก",
     },
+    {
+      num: "09",
+      image: "images/navigator-hidden-gem.jpg",
+      image_alt: "Navigator-led watermelon farm experience",
+      en: "A Navigator leads the way by bike to a hidden watermelon farm near Phru Jeh Son Lake — harvest by hand, turn it into a fresh smoothie and jam back at the hotel, then unwind with a 30-minute Watermelon Body Scrub.",
+      th: "เนวิเกเตอร์พาปั่นจักรยานไปยังไร่แตงโมที่ซ่อนตัวอยู่ใกล้ทะเลสาบพรุเจ๊ะซัน เก็บเกี่ยวด้วยมือของคุณเอง แล้วนำกลับมาทำสมูทตี้และแยมแตงโมที่โรงแรม ปิดท้ายด้วยทรีทเมนต์ Watermelon Body Scrub 30 นาที",
+      cta_url: "https://marrstar.box.com/s/s2yj4jjvpmyoj95igbgd91gqfdkcrd6v",
+      cta_label: "View Flyer →",
+    },
+    {
+      num: "10",
+      image: "images/navigator-market-to-table.jpg",
+      image_alt: "Good Travel Market to Table experience",
+      en: "Follow our Navigator and Chef from the local Talat Ching Pla market to Baan Ar Jor Museum, then into a hands-on Thai cooking class — a half-day journey through Mai Khao's food, culture, and community.",
+      th: "ตามเนวิเกเตอร์และเชฟไปยังตลาดชิงปลา และพิพิธภัณฑ์บ้านอาจ๋อ ก่อนปิดท้ายด้วยคลาสทำอาหารไทยแบบลงมือทำจริง ครึ่งวันแห่งการค้นพบอาหาร วัฒนธรรม และชุมชนของไม้ขาว",
+      cta_url: "https://marrstar.box.com/s/kmsq8pgo1xdsque84zw6hmircami65vj",
+      cta_label: "View Flyer →",
+    },
   ],
 
   // ── FOR MORE INFORMATION BUTTON ──────────────────────────────
@@ -303,7 +321,9 @@ function buildFacCard(o) {
 function buildDykCard(d) {
   return `<div class="dyk-card reveal">
     <div class="ph"><img src="${d.image}" alt="${d.image_alt}"></div>
-    <div class="body"><span class="n">${d.num}</span><p>${d.en}<span class="th">${d.th}</span></p></div>
+    <div class="body"><span class="n">${d.num}</span><p>${d.en}<span class="th">${d.th}</span></p>
+      ${d.cta_url ? `<a class="dyk-cta-btn" href="${d.cta_url}" target="_blank" rel="noopener">${d.cta_label || 'View Flyer →'}</a>` : ''}
+    </div>
   </div>`;
 }
 
