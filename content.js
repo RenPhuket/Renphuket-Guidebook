@@ -31,7 +31,7 @@ const CONTENT = {
       hours_en: "Everyday · 12:00 PM – 11:00 PM",
       hours_th: "ทุกวัน · 12:00 – 23:00",
       website_url: "https://www.yunamiphuket.com",
-      menu_url: "https://www.yunamiphuket.com/menu",
+      menu_url: "https://marrstar.box.com/s/3n8w4l6nwj3deiu843x7auscwtzhas22",
       book_url: "https://www.sevenrooms.com/explore/yunamihktbr/reservations/create/search?tracking=renphuket-guidebook",
       instagram_url: "https://www.instagram.com/yunamiphuket/",
     },
