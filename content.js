@@ -128,15 +128,16 @@ const CONTENT = {
       name: "Kids' World",
       body_en: "A fun and safe space for kids with creative activities, games, and hands-on experiences. Next to Dino Pool with slides and splash zones.",
       body_th: "พื้นที่สำหรับเด็ก มีกิจกรรมสร้างสรรค์ เกม และการเรียนรู้แบบลงมือทำ ตั้งอยู่ใกล้ Dino Pool ที่มีสไลเดอร์และโซนเล่นน้ำ",
-      hours_en: "Everyday · 9:00 AM – 6:00 PM",
-      hours_th: "ทุกวัน · 09:00 – 18:00",
+      hours_en: "Everyday · 9:00 AM – 10:00 PM",
+      hours_th: "ทุกวัน · 09:00 – 22:00",
+      hours2_en: "Dino Pool · 9:00 AM – 6:00 PM",
+      hours2_th: "Dino Pool · 09:00 – 18:00",
       menu_url: "https://marrstar.box.com/s/yzfzflrnml8mu9vc4tt9e1le5xp91zu0",
       menu_label: "View Activities →",
       acts: [
         "Northern Thai umbrella painting · วาดภาพร่มไทยภาคเหนือ",
         "Dino & unicorn pool inflatables · ของเล่นลอยน้ำไดโนเสาร์และยูนิคอร์น",
         "Jungle trail exploration behind the pool · สำรวจเส้นทางป่าหลังสระน้ำ",
-        "Non-alcoholic Punch Bowl Ritual every Monday · 16:30 · Punch Bowl ไม่มีแอลกอฮอล์ทุกวันจันทร์ 16:30",
       ],
     },
     {
@@ -180,6 +181,65 @@ const CONTENT = {
     },
   ],
 
+  // ── ENTERTAINMENT ────────────────────────────────────────────
+  // Schedule from the Entertainment Calendar, 20 – 31 October 2026.
+  // Each time line shows the English text and, underneath, the Thai text.
+
+  entertainment: [
+    {
+      id: "fairy-dance",
+      image: "images/ent-fairy-dance.jpg",
+      image_alt: "A fairy dancer in front of spinning fire hoops",
+      tag_en: "The Lounge",
+      name_en: "Fairy Dance Show",
+      name_th: "แฟรี่แดนซ์ โชว์",
+      body_en: "Enchanting fairies bring the wonders of nature to life through creativity and beauty.",
+      body_th: "เหล่านางฟ้าถ่ายทอดความมหัศจรรย์ของธรรมชาติให้มีชีวิตผ่านความคิดสร้างสรรค์และความงดงาม",
+      times: [
+        { en: "Wednesday · 6:45 PM – 7:00 PM", th: "วันพุธ · 18:45 – 19:00" },
+      ],
+    },
+    {
+      id: "thai-dance",
+      image: "images/ent-thai-dance.jpg",
+      image_alt: "A dancer in a traditional Thai costume and headdress",
+      tag_en: "Sand Box Beachfront Bar & Eatery",
+      name_en: "Thai Dance Show",
+      name_th: "โชว์ระบำไทย",
+      times: [
+        { en: "Monday · 7:00 PM – 7:45 PM", th: "วันจันทร์ · 19:00 – 19:45" },
+      ],
+    },
+    {
+      id: "dj",
+      image: "images/ent-dj.jpg",
+      image_alt: "A DJ's hands on a turntable",
+      tag_en: "Sand Box Beachfront Bar & Eatery",
+      name_en: "DJ",
+      name_th: "ดีเจ",
+      times: [
+        { en: "Tuesday · 2:00 PM – 6:00 PM", th: "วันอังคาร · 14:00 – 18:00" },
+        { en: "Thursday · 3:00 PM – 7:00 PM", th: "วันพฤหัสบดี · 15:00 – 19:00" },
+        { en: "Sunday · 6:00 PM – 10:00 PM", th: "วันอาทิตย์ · 18:00 – 22:00" },
+      ],
+    },
+    {
+      id: "duo-band",
+      image: "images/ent-duo-band.jpg",
+      image_alt: "Two musicians playing bass and electric guitars",
+      tag_en: "Sand Box Beachfront Bar & Eatery · Beach Lawn",
+      name_en: "Duo Band",
+      name_th: "วงดนตรีดูโอ",
+      times: [
+        { en: "Tuesday · 6:30 PM – 9:30 PM", th: "วันอังคาร · 18:30 – 21:30" },
+        { en: "Wednesday · 7:15 PM – 10:00 PM", th: "วันพุธ · 19:15 – 22:00" },
+        { en: "Thursday · 7:15 PM – 10:00 PM", th: "วันพฤหัสบดี · 19:15 – 22:00" },
+        { en: "Friday · 7:15 PM – 10:00 PM · Beach Lawn", th: "วันศุกร์ · 19:15 – 22:00 · Beach Lawn" },
+        { en: "Saturday · 7:15 PM – 10:00 PM", th: "วันเสาร์ · 19:15 – 22:00" },
+      ],
+    },
+  ],
+
   // ── DID YOU KNOW CARDS ───────────────────────────────────────
   // 8 cards — change text or image filename as needed
 
@@ -207,11 +267,12 @@ const CONTENT = {
     },
     {
       num: "04",
-      image: "images/p10_026.jpg",
-      image_alt: "I-Tim Kati Tong Muan",
+      image: "images/ya-nad-prik-glure.jpg",
+      image_alt: "A scoop of pineapple ice cream in a glass with a pineapple wedge, beside the Ya-Nad Prik Glure card",
+      image_pos: "50% 64%",
       // TIP: You can use <strong>word</strong> to bold a word
-      en: "Guests are welcomed with <strong>I-Tim Kati</strong> — Coconut Milk Ice Cream — served alongside <strong>Tong Muan</strong>. A small taste of our local neighborhood, setting the tone for discovery from the very first moment.",
-      th: "แขกของเราจะได้รับการต้อนรับด้วยไอติมกะทิสดเสิร์ฟคู่กับทองม้วน สัมผัสรสชาติเล็กๆ จากชุมชนท้องถิ่น ที่จะปูทางสู่การค้นพบใหม่ ตั้งแต่วินาทีแรกที่มาเยือน",
+      en: "<strong>Hidden Stories from the Local</strong> — “Ya-Nad Prik Glure.” ‘Ya-Nad’ means ‘Pineapple’ in the southern Thailand dialect. The pineapple used for making this ice cream is from our local neighborhood. Topped with tangy and spiciness from the chili, salt, and sugar, creating this ‘moments of new <strong>DISCOVERY</strong>’ for you to explore.",
+      th: "<strong>เรื่องราวที่ซ่อนอยู่จากคนท้องถิ่น</strong> — “ย่านัด พริกเกลือ” คำว่า ‘ย่านัด’ ในภาษาถิ่นใต้ หมายถึง ‘สับปะรด’ สับปะรดที่ใช้ทำไอติมนี้มาจากชุมชนใกล้เคียงของเรา โรยหน้าด้วยรสเปรี้ยวและเผ็ดจากพริก เกลือ และน้ำตาล เพื่อสร้าง ‘ช่วงเวลาแห่งการค้นพบใหม่’ ให้คุณได้สำรวจ",
     },
     {
       num: "05",
@@ -229,8 +290,9 @@ const CONTENT = {
     },
     {
       num: "07",
-      image: "images/yn_sushi.jpg",
-      image_alt: "Yunami signature dish",
+      image: "images/yn_sushi_roll.jpg",
+      image_alt: "Salmon rolls topped with salmon roe on a wooden board",
+      image_pos: "50% 62%",
       en: "Yunami, our new Japanese coastal izakaya, highlights fresh seafood, premium Japanese A5 Wagyu, and seasonal produce at the heart of its menu.",
       th: "ห้องอาหารญี่ปุ่นสไตล์อิซากายะ มีความโดดเด่นเน้นชูรสชาติอาหารทะเลสด เนื้อวากิวญี่ปุ่นเกรดเอ 5 ระดับพรีเมียม และผลผลิตตามฤดูกาล ซึ่งเป็นหัวใจหลักของเมนู",
     },
@@ -312,15 +374,29 @@ function buildFacCard(o) {
       <div class="name">${o.name}</div>
       <p>${o.body_en}<span class="th">${o.body_th}</span></p>
       ${o.hours_en ? `<div class="hours">⏱ ${o.hours_en}<span class="th"> · ${o.hours_th}</span></div>` : ''}
+      ${o.hours2_en ? `<div class="hours">⏱ ${o.hours2_en}<span class="th"> · ${o.hours2_th}</span></div>` : ''}
       ${acts}
       ${o.menu_url ? `<a class="outlet-menu-btn" href="${o.menu_url}" target="_blank" rel="noopener">${o.menu_label || 'View Menu →'}</a>` : ''}
     </div>
   </div>`;
 }
 
+function buildEntCard(o) {
+  const times = o.times.map(t => `<div class="ent-time">${t.en}<span class="th">${t.th}</span></div>`).join('');
+  return `<div class="ent-card reveal">
+    <div class="ph"><img src="${o.image}" alt="${o.image_alt}" loading="lazy"></div>
+    <div class="body">
+      <div class="tag">${o.tag_en}</div>
+      <div class="name">${o.name_en}<span class="th">${o.name_th}</span></div>
+      ${o.body_en ? `<p>${o.body_en}<span class="th">${o.body_th}</span></p>` : ''}
+      <div class="ent-times">${times}</div>
+    </div>
+  </div>`;
+}
+
 function buildDykCard(d) {
   return `<div class="dyk-card reveal">
-    <div class="ph"><img src="${d.image}" alt="${d.image_alt}"></div>
+    <div class="ph"><img src="${d.image}" alt="${d.image_alt}"${d.image_pos ? ` style="object-position:${d.image_pos}"` : ''}></div>
     <div class="body"><span class="n">${d.num}</span><p>${d.en}<span class="th">${d.th}</span></p>
       ${d.cta_url ? `<a class="dyk-cta-btn" href="${d.cta_url}" target="_blank" rel="noopener">${d.cta_label || 'View Flyer →'}</a>` : ''}
     </div>
@@ -335,6 +411,10 @@ document.addEventListener('DOMContentLoaded', function () {
   // Render facilities
   const facGrid = document.getElementById('facility-grid');
   if (facGrid) facGrid.innerHTML = CONTENT.facilities.map(o => buildFacCard(o)).join('');
+
+  // Render entertainment
+  const entGrid = document.getElementById('entertainment-grid');
+  if (entGrid) entGrid.innerHTML = CONTENT.entertainment.map(o => buildEntCard(o)).join('');
 
   // Render DYK cards
   const dykGrid = document.getElementById('dyk-grid');
